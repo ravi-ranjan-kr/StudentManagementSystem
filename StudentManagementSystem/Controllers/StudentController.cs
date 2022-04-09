@@ -43,6 +43,10 @@ namespace StudentManagementSystem.Controllers
             return Ok(stu);
         }
 
+        public ActionResult AddStudentById()
+        {
+            return View();
+        }
         public ActionResult AddStudentById(Student stu)
         {
             _Logger.LogInformation("student endpoint starts");
