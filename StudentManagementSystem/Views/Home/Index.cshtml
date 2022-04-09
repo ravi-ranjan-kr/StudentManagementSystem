@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Welcome</h2>
+    <h1>Student Management System</h1>
+    <div>
+        <h2><a class="nav-link text-dark btn-primary font-weight-bold" style="position: relative; margin: 10px; background-color: peachpuff; " asp-controller="Admin" asp-action="GetAllStudents">Admin</a></h2>
+        <h2><a class="nav-link text-dark btn-primary font-weight-bold" style="position: relative; margin: 10px; background-color: peachpuff; " asp-controller="Student" asp-action="SearchStudentById">Student</a></h2>
+        @*<button id="myAdminButton" class="float-lg-none submit-button w-25" style="background-color: peachpuff;">Admin</button>
+        <button id="myStudentButton" class="float-lg-none submit-button w-25" style="background-color: lightgreen;">Student</button>*@
+    </div>
+</div>
