@@ -43,11 +43,13 @@ namespace StudentManagementSystem.Controllers
             return Ok(stu);
         }
 
-        public ActionResult AddStudentById()
+        public ActionResult AddStudent()
         {
             return View();
         }
-        public ActionResult AddStudentById(Student stu)
+
+        [HttpPost]
+        public ActionResult AddStudent(Student stu)
         {
             _Logger.LogInformation("student endpoint starts");
             try
@@ -61,7 +63,8 @@ namespace StudentManagementSystem.Controllers
                 _Logger.LogError("exception occured;ExceptionDetail:" + ex.InnerException);
                 _Logger.LogError("exception occured;ExceptionDetail:" + ex);
             }
-            return Ok("Student Added");
+            ViewBag.Message = string.Format("Student Added Successfully");
+            return View();
         }
 
         public ActionResult EditStudent(Student course)
