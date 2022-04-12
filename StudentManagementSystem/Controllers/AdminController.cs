@@ -45,25 +45,19 @@ namespace StudentManagementSystem.Controllers
             //return Ok(student);
             return View(student);
         }
-        public IActionResult DeleteStudentByEmpId(int Id)
+
+        public ActionResult DeleteStudent(int Id)
         {
-            _Logger.LogInformation("student endpoint starts");
-
-            try
+            var student = _stuService.SearchStudent(Id);
+            if (student == null)
             {
-
-                var responseModel = _stuService.DeleteStudent(Id);
-                if (responseModel == null) return NotFound();
-                _Logger.LogInformation("student endpoint completed");
-
-                return Ok(responseModel);
-            }
-            catch (Exception ex)
-            {
-                _Logger.LogError("exception occured;ExceptionDetail:" + ex.Message);
-                _Logger.LogError("exception occured;ExceptionDetail:" + ex.InnerException);
-                _Logger.LogError("exception occured;ExceptionDetail:" + ex);
                 return BadRequest();
+            }
+            else
+            {
+                var responseModel = _stuService.DeleteStudent(Id);
+                ViewBag.Message = string.Format("Student Deleted Successfully");
+                return View(student);
             }
         }
         public async Task<IActionResult> GetAllStudentsMarks()
