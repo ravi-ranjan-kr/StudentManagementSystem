@@ -11,11 +11,14 @@ namespace StudentManagementSystem.Controllers
     {
         private readonly IStudentService _stuService;
         private readonly ILogger<StudentController> _Logger;
+        private readonly SendServiceBusMessage _sendServiceBusMessage;
 
-        public StudentController(IStudentService appContext, ILogger<StudentController> Logger)
+        public StudentController(IStudentService appContext, ILogger<StudentController> Logger, 
+            SendServiceBusMessage sendServiceBusMessage)
         {
             _Logger = Logger;
             _stuService = appContext;
+            _sendServiceBusMessage = sendServiceBusMessage;
         }
         public IActionResult Index()
         {
@@ -49,12 +52,18 @@ namespace StudentManagementSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddStudent(Student stu)
+        public async Task<ActionResult> AddStudent(Student stu)
         {
             _Logger.LogInformation("student endpoint starts");
             try
             {
                 _stuService.AddStudent(stu);
+                await _sendServiceBusMessage.sendServiceBusMessage(new ServiceBusMessageData
+                {
+                    FirstName = stu.StudentFirstName,
+                    LastName = stu.StudentLastName,
+                    Course = stu.StudentCourse
+                }) ;
                 _Logger.LogInformation("student endpoint completed");
             }
             catch (Exception ex)
