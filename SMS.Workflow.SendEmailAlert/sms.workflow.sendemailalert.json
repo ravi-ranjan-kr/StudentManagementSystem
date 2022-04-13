@@ -100,7 +100,7 @@
             "Parse_JSON_Incoming_Message": {
               "type": "ParseJson",
               "inputs": {
-                "content": "@triggerBody()?['ContentData']",
+                "content": " @{decodeBase64(triggerBody()?['ContentData'])}",
                 "schema": {}
               },
               "runAfter": {}

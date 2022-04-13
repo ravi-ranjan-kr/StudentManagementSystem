@@ -27,6 +27,7 @@ namespace StudentManagementSystem
         {
             services.AddControllersWithViews();
             services.AddDbContext<StudentMngmntDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DbCon")));
+            services.AddScoped<SendServiceBusMessage>();
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IStudentMarksService, StudentMarksService>();
         }

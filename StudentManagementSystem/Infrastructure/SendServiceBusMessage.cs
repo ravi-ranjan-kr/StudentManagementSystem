@@ -19,7 +19,7 @@ namespace StudentManagementSystem.Infrastructure
         public ServiceBusClient _client;
         public ServiceBusSender _clientSender;
 
-        public SendServiceBusMessage(IConfiguration configuration, ILogger<SendServiceBusMessage> logger)
+        public SendServiceBusMessage(IConfiguration _configuration, ILogger<SendServiceBusMessage> logger)
         {
             _logger = logger;
             var _serviceBusConnectionString = _configuration["ServiceBusConnectionString"];
