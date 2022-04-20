@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "StudentManagementSystem20220418",
+      "defaultValue": "StudentManagementSystemApp",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
